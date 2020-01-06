@@ -1,4 +1,4 @@
-package com.rubix.tennis.referee.domain;
+package com.rubix.tennis.referee;
 
 import lombok.Builder;
 import lombok.Getter;

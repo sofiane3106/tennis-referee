@@ -1,9 +1,5 @@
 package com.rubix.tennis.referee;
 
-import com.rubix.tennis.referee.domain.Game;
-import com.rubix.tennis.referee.domain.Player;
-import com.rubix.tennis.referee.domain.Score;
-import com.rubix.tennis.referee.domain.ScoreRule1;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

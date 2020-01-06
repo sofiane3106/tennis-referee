@@ -1,13 +1,13 @@
-package com.rubix.tennis.referee.domain;
+package com.rubix.tennis.referee;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
-public class Player extends AbstractBaseEntity {
+public class Player {
 
     @NotBlank
     @EqualsAndHashCode.Include

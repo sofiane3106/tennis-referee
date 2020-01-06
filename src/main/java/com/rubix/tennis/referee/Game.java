@@ -1,4 +1,4 @@
-package com.rubix.tennis.referee.domain;
+package com.rubix.tennis.referee;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -7,11 +7,11 @@ import lombok.Setter;
 
 import javax.validation.Valid;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @Setter
 @Getter
 @Builder
-public class Game extends AbstractBaseEntity {
+public class Game {
 
     @Valid
     private final Player playerOne;

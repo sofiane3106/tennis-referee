@@ -1,6 +1,8 @@
 package com.rubix.tennis.referee.acceptance;
 
-import com.rubix.tennis.referee.domain.*;
+import com.rubix.tennis.referee.Game;
+import com.rubix.tennis.referee.Player;
+import com.rubix.tennis.referee.ScoreRule2;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
