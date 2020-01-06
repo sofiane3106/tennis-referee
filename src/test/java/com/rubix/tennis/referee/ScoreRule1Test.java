@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 @SpringBootTest
-class TennisRefereeFirstRuleTests {
+class ScoreRule1Test {
 
     @DisplayName("The player score should increment 0, 15, 30, 40")
     @Test
