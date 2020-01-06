@@ -19,5 +19,5 @@ public class Player extends AbstractBaseEntity {
     @NotBlank
     private String lastName;
 
-    private Score score;
+    private String score;
 }

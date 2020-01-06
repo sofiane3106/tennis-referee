@@ -20,4 +20,6 @@ public class Game extends AbstractBaseEntity {
     private final Player playerTwo;
 
     private boolean isOver;
+
+    private Player winner;
 }
