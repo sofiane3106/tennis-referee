@@ -27,9 +27,9 @@ Feature: Tennis game referee
 
   Scenario Outline: Manage the first set game
     Given "<firstPlayer>" has score equals "<scorePlayer1Started>"
-    And "<secondPlayer>" has score equals "<scorePlayer2Started>"
+    And "<secondPlayer>" score is "<scorePlayer2Started>"
     When "<secondPlayer>" mark a point
-    Then The "<secondPlayer>" win the game
+    Then "<secondPlayer>" win the game
     And  the game is over
 
     Examples:

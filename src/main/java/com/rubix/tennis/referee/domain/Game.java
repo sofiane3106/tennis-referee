@@ -22,4 +22,13 @@ public class Game extends AbstractBaseEntity {
     private boolean isOver;
 
     private Player winner;
+
+    public String getScore() {
+        StringBuilder gameScore = new StringBuilder();
+        Player playerOne = getPlayerOne();
+        Player playerTwo = getPlayerTwo();
+        gameScore.append("Player : ").append(playerOne.toString()).append(" has score = ").append(playerOne.getScore()).append("\\n");
+        gameScore.append("Player : ").append(playerTwo.toString()).append(" has score = ").append(playerTwo.getScore()).append("\\n");
+        return gameScore.toString();
+    }
 }

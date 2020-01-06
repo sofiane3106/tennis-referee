@@ -8,21 +8,23 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 public class FirstRuleStepdefs {
 
     private Game game;
     private Player playerOne;
     private Player playerTwo;
-    private Score score;
+    private ScoreRule1 score;
 
     @Given("player has score equals {string}")
     public void playerHasScoreEqualsStart(String playerScoreStarted) {
-        playerOne = Player.builder().firstName("Sofiane").lastName("REBIB").score(playerScoreStarted).build();
-        playerTwo = Player.builder().firstName("Player2").lastName("Player2LastName").score(playerScoreStarted).build();
+        playerOne = new Player("Sofiane", "REBIB", playerScoreStarted);
+        playerTwo = new Player("Player2", "Player2LastName", playerScoreStarted);
 
         game = Game.builder().playerOne(playerOne).playerTwo(playerTwo).build();
         score = ScoreRule1.builder().game(game).build();
@@ -39,16 +41,8 @@ public class FirstRuleStepdefs {
     }
 
     @Given("{string} has score equals {string}")
-    public void hasScoreEquals(String player, String scoreStarted) {
-        playerOne = Player.builder().firstName(player).lastName("REBIB").score(scoreStarted).build();
-
-    }
-
-    @And("{string} score is {string}")
-    public void scoreIs(String player, String scoreStarted) {
-        playerTwo = Player.builder().firstName(player).lastName("Player2LastName").score(scoreStarted).build();
-        game = Game.builder().playerOne(playerOne).playerTwo(playerTwo).build();
-        score = ScoreRule1.builder().game(game).build();
+    public void hasScoreEquals(String playerFirstName, String scoreStarted) {
+        playerOne = new Player(playerFirstName, "REBIB", scoreStarted);
     }
 
     @When("{string} mark a point")
@@ -63,15 +57,20 @@ public class FirstRuleStepdefs {
         assertEquals(expectedScore, player.getScore());
     }
 
-    @Then("The {string} win the game")
-    public void theWinTheGame(String playerFirstName) {
-        assertEquals(game.getWinner().getFirstName(), playerFirstName);
-    }
-
     @And("the game is over")
     public void theGameIsOver() {
         assertTrue(game.isOver());
     }
 
+    @And("{string} score is {string}")
+    public void scoreIs(String secondPlayerFirstName, String scoreStarted) {
+        playerTwo = new Player(secondPlayerFirstName, "Player2LastName", scoreStarted);
+        game = Game.builder().playerOne(playerOne).playerTwo(playerTwo).build();
+        score = ScoreRule1.builder().game(game).build();
+    }
 
+    @Then("{string} win the game")
+    public void winTheGame(String playerFirstName) {
+        assertEquals(game.getWinner().getFirstName(), playerFirstName);
+    }
 }
