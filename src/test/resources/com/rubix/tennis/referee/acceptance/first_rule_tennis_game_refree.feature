@@ -1,7 +1,7 @@
 Feature: Tennis game referee
   Manage a tennis set game with score rule 1
 
-  Scenario Outline: Manage the first set game
+  Scenario Outline: Manage a tennis game with rule 1
     Given player has score equals "<start>"
     When player mark a point
     Then the player score should be "<expect>"
