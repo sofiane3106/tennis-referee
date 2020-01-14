@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 @RequiredArgsConstructor
-abstract class Match {
+abstract class AbstractMatch {
 
     @Valid
     protected final Player playerOne;

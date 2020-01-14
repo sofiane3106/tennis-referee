@@ -13,20 +13,27 @@ import java.util.List;
 @Slf4j
 @Setter
 @Getter
-public class TennisSet extends Match {
+public class TennisSet extends AbstractMatch {
 
-    private List<Game> games;
+    private List<TennisGame> tennisGames;
 
     @Builder
     public TennisSet(Player playerOne, Player playerTwo, ScoreRule scoreRule) {
         super(playerOne, playerTwo, scoreRule);
-        games = new ArrayList<>();
+        tennisGames = new ArrayList<>();
     }
 
     private void finish(Player winner) {
         setOver(true);
         setWinner(winner);
-        log.info("{} has won the set ", winner.getFirstName());
+
+        if(tieBreakIsActivated(playerOne, playerTwo)){
+            winner.incrementSetScore();
+            winner.setMatchWinner(true);
+            playerOne.setTieBreakScore(0);
+            playerTwo.setTieBreakScore(0);
+        }
+
         if (!winner.isMatchWinner()) {
             playerOne.setSetScore(0);
             playerTwo.setSetScore(0);
@@ -47,21 +54,26 @@ public class TennisSet extends Match {
         }
     }
 
-    public Game startNewGame() {
+    public TennisGame startNewGame() {
         ScoreRule scoreGame = new ScoreRuleGameRule2();
-        Game game = Game.builder().playerOne(playerOne).playerTwo(playerTwo).scoreRule(scoreGame).build();
-        game.setTennisSet(this);
-        this.getGames().add(game);
-        return game;
+        TennisGame tennisGame = TennisGame.builder().playerOne(playerOne).playerTwo(playerTwo).scoreRule(scoreGame).build();
+        tennisGame.setTennisSet(this);
+        this.getTennisGames().add(tennisGame);
+        return tennisGame;
     }
 
     @Override
-    String getScore() {
+    public String getScore() {
         StringBuilder setScore = new StringBuilder();
         Player playerOne = getPlayerOne();
         Player playerTwo = getPlayerTwo();
-        setScore.append("Player : ").append(playerOne.toString()).append(" has gameScore = ").append(playerOne.getSetScore()).append("\\n");
-        setScore.append("Player : ").append(playerTwo.toString()).append(" has gameScore = ").append(playerTwo.getSetScore()).append("\\n");
+        setScore.append("Player : ").append(playerOne.toString()).append(" has setScore = ").append(playerOne.getSetScore()).append("\n");
+        setScore.append("Player : ").append(playerTwo.toString()).append(" has setScore = ").append(playerTwo.getSetScore());
         return setScore.toString();
+    }
+
+    // TODO: to mutualise with the same method exist in ScoreRuleSetRule2
+    private boolean tieBreakIsActivated(Player player, Player otherPlayer) {
+        return player.getSetScore() == 6 && otherPlayer.getSetScore() == 6;
     }
 }

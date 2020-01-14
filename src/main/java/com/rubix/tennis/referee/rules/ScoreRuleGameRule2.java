@@ -9,7 +9,7 @@ import java.util.List;
 
 @Slf4j
 @Getter
-public class ScoreRuleGameRule2 extends ScoreRule {
+public class ScoreRuleGameRule2 implements ScoreRule {
 
     public static final List<String> scorePoints = Arrays.asList("0", "15", "30", "40");
     public static final String ADVANTAGE_POINT = "ADV";

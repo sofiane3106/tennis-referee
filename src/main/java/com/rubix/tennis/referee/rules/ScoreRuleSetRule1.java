@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class ScoreRuleSetRule1 extends ScoreRule {
+public class ScoreRuleSetRule1 implements ScoreRule {
 
     @Override
     public void incrementPlayerScore(Player player, Player otherPlayer) {
